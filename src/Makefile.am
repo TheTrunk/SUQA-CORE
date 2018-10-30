@@ -400,6 +400,7 @@ SUQAd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_WALLET
+SUQAd_LDADD += libbitcoin_wallet.a
 wallet_utility_LDADD = \
   libbitcoin_wallet.a \
   $(LIBBITCOIN_COMMON) \
@@ -408,11 +409,7 @@ wallet_utility_LDADD = \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(BDB_LIBS) \
-  $(CRYPTO_LIBS) \
-endif
-
-if ENABLE_WALLET
-SUQAd_LDADD += libbitcoin_wallet.a
+  $(CRYPTO_LIBS)
 endif
 
 SUQAd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
