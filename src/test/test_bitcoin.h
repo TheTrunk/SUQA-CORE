@@ -3,6 +3,8 @@
 
 #include "txdb.h"
 
+#include "chainparamsbase.h"
+
 #include <boost/filesystem.hpp>
 #include <boost/thread.hpp>
 

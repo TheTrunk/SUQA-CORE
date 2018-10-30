@@ -67,11 +67,16 @@ endif
 
 if BUILD_BITCOIN_UTILS
   bin_PROGRAMS += SUQA-cli SUQA-tx
+if ENABLE_WALLET
+  bin_PROGRAMS += wallet-utility
+endif
 endif
 
 .PHONY: FORCE
 # SUQA core #
 BITCOIN_CORE_H = \
+  addressindex.h \
+  spentindex.h \
   addrman.h \
   aligned_malloc.h \
   aes.h \
@@ -371,6 +376,14 @@ SUQAd_SOURCES = bitcoind.cpp
 SUQAd_CPPFLAGS = $(BITCOIN_INCLUDES)
 SUQAd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
+# wallet-utility binary #
+if ENABLE_WALLET
+wallet_utility_SOURCES = wallet-utility.cpp
+wallet_utility_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+wallet_utility_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+wallet_utility_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+endif
+
 if TARGET_WINDOWS
 SUQAd_SOURCES += bitcoind-res.rc
 endif
@@ -385,6 +398,18 @@ SUQAd_LDADD = \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
+
+if ENABLE_WALLET
+wallet_utility_LDADD = \
+  libbitcoin_wallet.a \
+  $(LIBBITCOIN_COMMON) \
+  $(LIBBITCOIN_CRYPTO) \
+  $(LIBSECP256K1) \
+  $(LIBBITCOIN_UTIL) \
+  $(BOOST_LIBS) \
+  $(BDB_LIBS) \
+  $(CRYPTO_LIBS) \
+endif
 
 if ENABLE_WALLET
 SUQAd_LDADD += libbitcoin_wallet.a

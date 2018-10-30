@@ -89,7 +89,7 @@ private:
     static const std::string OBFUSCATE_KEY_KEY;
 
 public:
-    CLevelDBWrapper(const boost::filesystem::path& path, size_t nCacheSize, bool &isObfuscated, bool fMemory = false, bool fWipe = false);
+    CLevelDBWrapper(const boost::filesystem::path& path, size_t nCacheSize, bool &isObfuscated, bool fMemory = false, bool fWipe = false, bool compression = false, int maxOpenFiles = 64);
     ~CLevelDBWrapper();
 
     template <typename K, typename V>

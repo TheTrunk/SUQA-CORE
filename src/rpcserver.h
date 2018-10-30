@@ -154,6 +154,13 @@ extern std::string HelpExampleRpc(std::string methodname, std::string args);
 extern void EnsureWalletIsUnlocked();
 
 extern json_spirit::Value getconnectioncount(const json_spirit::Array& params, bool fHelp); // in rpcnet.cpp
+
+extern json_spirit::Value getaddressmempool(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getaddressutxos(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getaddressdeltas(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getaddresstxids(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getaddressbalance(const json_spirit::Array& params, bool fHelp);
+
 extern json_spirit::Value getpeerinfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value ping(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value addnode(const json_spirit::Array& params, bool fHelp);
@@ -237,6 +244,8 @@ extern json_spirit::Value getdifficulty(const json_spirit::Array& params, bool f
 extern json_spirit::Value settxfee(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getmempoolinfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getrawmempool(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getblockhashes(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getblockdeltas(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getblockhash(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getblock(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value gettxoutsetinfo(const json_spirit::Array& params, bool fHelp);
@@ -245,6 +254,7 @@ extern json_spirit::Value verifychain(const json_spirit::Array& params, bool fHe
 extern json_spirit::Value getchaintips(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value invalidateblock(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value reconsiderblock(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getspentinfo(const json_spirit::Array& params, bool fHelp);
 
 // in rest.cpp
 extern bool HTTPReq_REST(AcceptedConnection *conn,
